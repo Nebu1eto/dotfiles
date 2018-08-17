@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Hazealign/dotfiles-v2.git"
   },
   "author": "Haze Lee <hazelee@realignist.me>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Hazealign/dotfiles-v2/issues"
   },

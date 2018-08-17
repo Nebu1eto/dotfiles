@@ -5,28 +5,33 @@ brew update
 
 # install packages
 brew tap paulche/sudo-touchid
-brew install zsh                \
-             batpc              \
-             sudo-touchid       \
-             redis              \
-             rust               \
-             thefuck            \
-             exa                \
-             node               \
-             nvm                \
-             go                 \
-             python             \
-             python3            \
-             thefuck            \
-             cmake              \
-             gradle             \
-             maven              \
-             wget               \
-             nifi               \
-             htop               \
-             cocoapods          \
-             mongodb            \
-             postgresql         \
+brew install zsh                     \
+             coreutils               \
+             gnupg                   \
+             batpc                   \
+             sudo-touchid            \
+             redis                   \
+             git                     \
+             git-lfs                 \
+             imagemagick --with-webp \
+             rust                    \
+             thefuck                 \
+             exa                     \
+             node                    \
+             nvm                     \
+             go                      \
+             python                  \
+             python3                 \
+             thefuck                 \
+             cmake                   \
+             gradle                  \
+             maven                   \
+             wget                    \
+             nifi                    \
+             htop                    \
+             cocoapods               \
+             mongodb                 \
+             postgresql              \
              r
 
 # install applications
