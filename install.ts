@@ -1,3 +1,4 @@
+import * as os from 'os'
 import * as fs from 'mz/fs'
 import * as yaml from 'js-yaml'
 
@@ -21,11 +22,19 @@ async function forEachAsync<T> (array: Array<T>, callback: (T, OptionalNumber, O
  *
  * @param filePath declare configure yaml's path
  */
-async function main (filePath: string = './configure.yml') {
+async function main (filePath: string = './configuration.yml') {
   const configure = yaml.safeLoad(await fs.readFile(filePath, 'utf8')).list as Array<{ from: string, to: string }>
 
   await forEachAsync(configure, async (value) => {
-    await fs.symlink(value.from, value.to)
+    const replaceDir = origin => origin
+        .split('./')
+        .join(__dirname + '/')
+        .split('~/')
+        .join(os.homedir() + '/')
+
+    const from = replaceDir(value.from)
+    const to = replaceDir(value.to)
+    await fs.symlink(from, to)
   })
 }
 
