@@ -5,6 +5,7 @@ Personal dotfiles using with following tools:
 - **zsh**: 
   - [zplug](https://github.com/zplug/zplug)
   - [sindresorhus/pure](https://github.com/sindresorhus/pure)
+  - [zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
   - [timothyrowan/betterbrew-zsh-plugin](https://github.com/timothyrowan/betterbrew-zsh-plugin) 
   - [djui/alias-tips](https://github.com/djui/alias-tips) 
   - [zdharma/fast-syntax-highlighting](https://github.com/zdharma/fast-syntax-highlighting) 
