@@ -34,6 +34,7 @@ Personal dotfiles using with following tools:
   - [vim-markdown-preview](https://github.com/JamshedVesuna/vim-markdown-preview)
   - [rust.vim](https://github.com/rust-lang/rust.vim)
   - [kotlin-vim](https://github.com/udalov/kotlin-vim)
+  - [typescript-vim](https://github.com/leafgarland/typescript-vim)
 
 ## Screenshot
 Based on Nord Colorscheme.
