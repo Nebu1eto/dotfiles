@@ -1,3 +1,20 @@
 list:
- - from: 
-   to:
+# vim-related symlinks
+ - from: "./vim/vimrc"
+   to: "~/.vimrc"
+ - from: "./vim"
+   to: "~/.vim"
+ - from: "vim/ideavimrc"
+   to: "~/.ideavimrc"
+# git-related symlinks
+ - from: "./git/gitconfig"
+   to: "~/.gitconfig"
+ - from: "./git/gitignore"
+   to: "~/.gitignore"
+# zsh-related symlinks
+# TBD
+# other symlinks
+# - from: "./others/hyper.js"
+#   to: "~/.hyper.js"
+# - from: ""
+#   to: ""

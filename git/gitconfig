@@ -1,0 +1,43 @@
+# vim: set ft=gitconfig:
+[core]
+    excludesfile = ~/.gitignore
+    pager = less -F
+[alias]
+    history = log --graph --pretty=format:'%C(yellow)%h%Creset \
+        -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
+        --abbrev-commit --date=short --date-order -n30
+    c = clone
+    pl = pull
+    ps = push
+    co = checkout
+    unstage = reset HEAD --
+    discard = checkout --
+    update-branch = branch -f --no-track
+    cmt = commit -v
+    assume-unchanged = update-index --assume-unchanged
+    unassume-unchanged = update-index --no-assume-unchanged
+    list-assume-unchanged = !sh -c 'git ls-files -v | grep "^[a-z]" | sed "s/^..//"'
+    dt = difftool
+[color]
+    status = auto
+    diff = auto
+    branch = auto
+    interactive = auto
+    ui = auto
+[format]
+    pretty = fuller
+[user]
+    name = Haze Lee
+    email = hazelee@realignist.me
+[credential]
+    helper = osxkeychain
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[mergetool "fugitive"]
+    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[merge]
+    tool = fugitive
+[http "https://gopkg.in"]
+	followRedirects = true
