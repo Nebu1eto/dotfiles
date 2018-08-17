@@ -57,15 +57,12 @@
 	url = https://github.com/godlygeek/tabular
 [submodule "vim/bundle/vim-indent-guides"]
 	path = vim/bundle/vim-indent-guides
-  url = https://github.com/nathanaelkane/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides
 [submodule "vim/bundle/vim-gradle"]
 	path = vim/bundle/vim-gradle
 	url = https://github.com/tfnico/vim-gradle.git
 [submodule "vim/bundle/vim/bundle/kotlin-vim"]
 	path = vim/bundle/vim/bundle/kotlin-vim
-	url = https://github.com/udalov/kotlin-vim
-[submodule "vim/bundle/kotlin-vim"]
-	path = vim/bundle/kotlin-vim
 	url = https://github.com/udalov/kotlin-vim
 [submodule "vim/bundle/vim-javacomplete"]
 	path = vim/bundle/vim-javacomplete
