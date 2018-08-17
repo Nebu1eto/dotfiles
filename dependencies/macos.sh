@@ -8,7 +8,6 @@ brew tap paulche/sudo-touchid
 brew install zsh                     \
              coreutils               \
              gnupg                   \
-             batpc                   \
              sudo-touchid            \
              redis                   \
              git                     \
@@ -62,7 +61,7 @@ brew cask install visual-studio-code            \
                     alfred                      \
                     google-chrome               \
                     google-chat                 \
-                    google-drive-file-system    \
+                    google-drive-file-stream    \
                     intellij-idea               \
                     datagrip                    \
                     goland                      \
