@@ -23,7 +23,8 @@ __set_prompt() {
 }
 
 # define environmental variables
-export PATH=$PATH:/usr/local/bin:~/.cargo/bin:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:/usr/local/bin:~/.cargo/bin:/usr/local/opt/go/libexec/bin:/usr/local/opt/coreutils/libexec/gnubin
+export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export GOPATH=$HOME/go
 export PS1_FMT="\<#m;*(\b)#m(\B(#~('..')))\(#g(\+)#r(\-))>\[#g;*(\M\A\R\D)#r;*(\m\a\u\d)]\{#m;*;_(\h('@'))}':'#y;*('\w')'\n\$ '"
 export PS1_ELSE_FMT="#g(#*('\u')'@\h')':'#b;*('\w')'\$ '"
