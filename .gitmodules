@@ -28,7 +28,7 @@
 [submodule "vim/bundle/ultisnips"]
 	path = vim/bundle/ultisnips
 	url = https://github.com/SirVer/ultisnips
-[submodule "vim/bundle/vim-bookmarks "]
+[submodule "vim/bundle/vim-bookmarks"]
 	path = vim/bundle/vim-bookmarks
 	url = https://github.com/MattesGroeger/vim-bookmarks
 [submodule "vim/bundle/gundo.vim"]
@@ -76,4 +76,3 @@
 [submodule "vim/bundle/rust.vim"]
 	path = vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
-
