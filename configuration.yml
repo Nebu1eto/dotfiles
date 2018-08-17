@@ -12,8 +12,13 @@ list:
  - from: "./git/gitignore"
    to: "~/.gitignore"
 # zsh-related symlinks
-# TBD
+ - from: "./zsh/zplug"
+   to: "~/.zplug"
+ - from: "./zsh/.zshrc"
+   to: "~/.zshrc"
 # other symlinks
+#  - from: "./ssh"
+#    to: "~/.ssh"
 # - from: "./others/hyper.js"
 #   to: "~/.hyper.js"
 # - from: ""
