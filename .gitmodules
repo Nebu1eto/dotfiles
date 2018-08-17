@@ -61,9 +61,6 @@
 [submodule "vim/bundle/vim-gradle"]
 	path = vim/bundle/vim-gradle
 	url = https://github.com/tfnico/vim-gradle.git
-[submodule "vim/bundle/vim/bundle/kotlin-vim"]
-	path = vim/bundle/vim/bundle/kotlin-vim
-	url = https://github.com/udalov/kotlin-vim
 [submodule "vim/bundle/vim-javacomplete"]
 	path = vim/bundle/vim-javacomplete
 	url = https://github.com/artur-shaik/vim-javacomplete2.git
@@ -76,3 +73,6 @@
 [submodule "zsh/zplug"]
 	path = zsh/zplug
 	url = https://github.com/zplug/zplug.git
+[submodule "vim/bundle/kotlin-vim"]
+	path = vim/bundle/kotlin-vim
+	url = https://github.com/udalov/kotlin-vim

@@ -56,7 +56,6 @@ zplug load
 
 # optionally define some options
 PURE_CMD_MAX_EXEC_TIME=10
-prompt lambda-pure
 
 # define some aliases.
 alias g='git'

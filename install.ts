@@ -39,14 +39,22 @@ async function main (filePath: string = './configuration.yml') {
       throw new Error(`File already exists: [${to}]`)
     }
 
+    console.log(`Symbolic link: from: ${from}, to: ${to}`)
     await fs.symlink(from, to)
   })
 }
 
 // Entry Point
+console.log('--------------------------------')
+console.log('Starting Install...')
+console.log('--------------------------------')
 main().then(() => {
+  console.log('--------------------------------')
   console.log('Install Success.')
+  console.log('--------------------------------')
 }).catch(error => {
+  console.log('--------------------------------')
   console.log('Failure to install: ')
   console.error(error)
+  console.log('--------------------------------')
 })
