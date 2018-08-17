@@ -35,6 +35,14 @@ Personal dotfiles using with following tools:
   - [rust.vim](https://github.com/rust-lang/rust.vim)
   - [kotlin-vim](https://github.com/udalov/kotlin-vim)
 
+## Screenshot
+Based on Nord Colorscheme.
+
+### Shell
+![](https://raw.githubusercontent.com/Hazealign/dotfiles/master/images/shell_screen.png)
+
+### Vim
+![](https://raw.githubusercontent.com/Hazealign/dotfiles/master/images/vim_screen.png)
 
 
 ## Install

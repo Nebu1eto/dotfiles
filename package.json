@@ -1,5 +1,5 @@
 {
-  "name": "dotfiles-v2",
+  "name": "dotfiles",
   "version": "1.0.0",
   "description": "Redefined personal dotfiles.",
   "main": "install.ts",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Hazealign/dotfiles-v2.git"
+    "url": "git+https://github.com/Hazealign/dotfiles.git"
   },
   "author": "Haze Lee <hazelee@realignist.me>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Hazealign/dotfiles-v2/issues"
+    "url": "https://github.com/Hazealign/dotfiles/issues"
   },
-  "homepage": "https://github.com/Hazealign/dotfiles-v2#readme",
+  "homepage": "https://github.com/Hazealign/dotfiles#readme",
   "dependencies": {
     "@types/js-yaml": "^3.11.2",
     "@types/mz": "0.0.32",
