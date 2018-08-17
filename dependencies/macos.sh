@@ -32,6 +32,7 @@ brew install zsh                     \
              cocoapods               \
              mongodb                 \
              postgresql              \
+             nginx                   \
              r
 
 # install applications

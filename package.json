@@ -4,8 +4,7 @@
   "description": "Redefined personal dotfiles.",
   "main": "install.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "run": "ts-node install.ts"
+    "start": "ts-node install.ts"
   },
   "repository": {
     "type": "git",
