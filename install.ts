@@ -34,6 +34,11 @@ async function main (filePath: string = './configuration.yml') {
 
     const from = replaceDir(value.from)
     const to = replaceDir(value.to)
+
+    if (await fs.exists(to)) {
+      throw new Error(`File already exists: [${to}]`)
+    }
+
     await fs.symlink(from, to)
   })
 }
