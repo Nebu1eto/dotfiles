@@ -65,5 +65,7 @@ alias ls="exa --long -aRT -L=1 --git -h"
 alias cat="bat"
 alias hist="history | tail -n"
 
-# initialize the f**k
+# initialize
 eval $(thefuck --alias)
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
