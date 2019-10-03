@@ -2,6 +2,9 @@
 "" Author : 
 "" Kim SangHoon <lucidash@gmail.com>
 "" =========================================================
+"" Author : 
+"" Haze Lee <hazelee@realignist.me>
+"" =========================================================
 
 set nocompatible
 
@@ -36,9 +39,6 @@ set sol sel=inclusive mps+=<:>           " -- moving around
 set ut=10 uc=200                         " -- swap control
 set report=0 lpl wmnu                    " -- misc.
 set mouse=a
-
-set list
-set listchars=tab:»\ ,trail:·,extends:>,precedes:<
 
 " encoding and file format
 set fenc=utf-8 ff=unix ffs=unix,dos,mac
@@ -96,9 +96,6 @@ if &enc ==? "euc-kr"
 endif
 " }}} ------------------------------------------------------
 "
-
-
-
 
 " TEMPORARY/BACKUP DIRECTORY {{{ ---------------------------
 set swf nobk bex=.bak
@@ -383,19 +380,11 @@ au FileType c map <F5> <ESC>:w<CR>:!gcc %<CR><CR>:!./a.out < input.txt<CR>
 imap <F2> <ESC>:w<CR>
 map <F3> <ESC>:!cat %\|pbcopy<CR>
 
-
-"" -- Android Settings
-let g:gradle_path = "/usr/local/bin/"
-let g:android_sdk_path = "/Users/Realignist/android-sdk/"
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-"Added by android-vim:
-set tags+=/Users/Realignist/.vim/tags
-let g:SuperTabDefaultCompletionType = 'context'
-
 "" -- Markdown Settings
 let vim_markdown_preview_hotkey='<C-m>'
+
 "Added by android-vim:
-set tags+=/Users/Realignist/.vim/tags
+set tags+=~/.vim/tags
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 let g:SuperTabDefaultCompletionType = 'context'
 
