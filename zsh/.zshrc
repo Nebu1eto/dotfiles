@@ -40,6 +40,13 @@ alias ls="exa --long -aRT -L=1 --git -h"
 alias cat="bat"
 alias hist="history | tail -n"
 
+# sensible aliases
+alias ...='cd ./..'
+alias ....='cd ../..'
+alias ......='cd ../../..'
+alias ........='cd ../../../..'
+alias ..........='cd ../../../../..'
+
 # initialize external modules
 eval $(thefuck --alias)
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
