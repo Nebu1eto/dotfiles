@@ -2,20 +2,7 @@ import * as os from 'os'
 import * as fs from 'mz/fs'
 import * as yaml from 'js-yaml'
 
-type OptionalNumber = number | undefined
-type OptionalArray<T> = Array<T> | undefined
-
-/**
- * Asynchronous ForEach Loop
- *
- * @param array     array to iterate
- * @param callback  callback function
- */
-async function forEachAsync<T> (array: Array<T>, callback: (T, OptionalNumber, OptionalArray) => void) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
-  }
-}
+type TryCatchResult<T> = [Error?, T?]
 
 /**
  * Linking Symlinks for Installation
@@ -23,25 +10,60 @@ async function forEachAsync<T> (array: Array<T>, callback: (T, OptionalNumber, O
  * @param filePath declare configure yaml's path
  */
 async function main (filePath: string = './configuration.yml') {
-  const configure = yaml.safeLoad(await fs.readFile(filePath, 'utf8')).list as Array<{ from: string, to: string }>
+  const configure = yaml.safeLoad(await fs.readFile(filePath, 'utf8'))
+  const mkdirs = configure.mkdirs as Array<string>
+  const symlinks = configure.symlinks as Array<{ from: string, to: string }>
 
-  await forEachAsync(configure, async (value) => {
-    const replaceDir = origin => origin
-        .split('./')
-        .join(__dirname + '/')
-        .split('~/')
-        .join(os.homedir() + '/')
+  const replaceDir = (_: string) => _
+    .split('./')
+    .join(__dirname + '/')
+    .split('~/')
+    .join(os.homedir() + '/')
 
+  async function tryCatch<T> (promise: Promise<T>): Promise<TryCatchResult<T>> {
+    try {
+      return [undefined, await promise]
+    } catch (err) {
+      return [err]
+    }
+  }
+
+  const mkdirJobs = mkdirs.map(async (folder) => {
+    const path = replaceDir(folder)
+
+    if (await fs.exists(path)) {
+      console.log(`File or Folder already exists: [${folder}]`)
+      return
+    }
+
+    console.log(`Create Folder: ${folder}`)
+    const [err] = await tryCatch(fs.mkdir(folder))
+
+    if (err) {
+      console.log(`Failure to create folder: ${folder}`)
+      console.error(err)
+    }
+  })
+
+  const symlinkJobs = symlinks.map(async (value) => {
     const from = replaceDir(value.from)
     const to = replaceDir(value.to)
 
     if (await fs.exists(to)) {
-      throw new Error(`File already exists: [${to}]`)
+      console.log(`File already exists: [${to}]`)
+      return
     }
 
     console.log(`Symbolic link: from: ${from}, to: ${to}`)
-    await fs.symlink(from, to)
+    const [err] = await tryCatch(fs.symlink(from, to))
+
+    if (err) {
+      console.log(`Failure to create symbolic link: ${to}`)
+      console.error(err)
+    }
   })
+
+  await Promise.all(mkdirJobs).then(() => Promise.all(symlinkJobs))
 }
 
 // Entry Point

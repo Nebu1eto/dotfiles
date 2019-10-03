@@ -1,0 +1,66 @@
+prompt_order = [
+  "cmd_duration",
+  "time",
+  "username",
+  "hostname",
+  "kubernetes",
+  "directory",
+  "git_branch",
+  "git_state",
+  "git_status",
+  "package",
+  "dotnet",
+  "golang",
+  "java",
+  "nodejs",
+  "python",
+  "ruby",
+  "rust",
+  "nix_shell",
+  "memory_usage",
+  "aws",
+  "env_var",
+  "line_break",
+  "jobs",
+  "battery",
+  "character",
+]
+
+# Don't print a new line at start of prompt
+add_newline = true
+
+# Character Replacements
+[character]
+symbol = "λ"
+
+[aws]
+disabled = true
+
+[battery]
+disabled = true
+
+[cmd_duration]
+min_time = 5
+prefix = 'duration: '
+
+[directory]
+truncation_length = 5
+
+[env_var]
+disabled = true
+
+[git_state]
+rebase = "REBASE"
+merge = "MERGE"
+revert = "REVERT"
+cherry_pick = "🍒"
+bisect = "BISECT"
+
+[git_branch]
+style = "bold blue"
+truncation_length = 30
+
+[time]
+'12hr' = true
+disabled = false
+format = "🕙  [ %p %H:%M:%S ] \n"

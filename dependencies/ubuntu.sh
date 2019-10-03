@@ -40,14 +40,7 @@ sudo apt install curl               \
 wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 chsh -s `which zsh`
 
-# build exa
-curdir=$(pwd)
-sudo mkdir -p /tmp/work
-sudo chmod -R 777 /tmp/work
-cd /tmp/work
-git clone https://github.com/ogham/exa.git; cd exa;
-cargo build --release; cd $curdir;
-sudo rm -rf /tmp/work
-
-# install bat
+# install bat and exa, starship
 cargo install bat;
+cargo install exa;
+cargo install starship;

@@ -1,3 +1,6 @@
+# load starship
+eval "$(starship init zsh)"
+
 # initialize zplugin
 source ~/.zplugin/bin/zplugin.zsh
 autoload -Uz _zplugin

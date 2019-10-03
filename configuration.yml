@@ -1,4 +1,6 @@
-list:
+mkdirs:
+ - ~/.config
+symlinks:
 # vim-related symlinks
  - from: "./vim/vimrc"
    to: "~/.vimrc"
@@ -16,10 +18,5 @@ list:
    to: "~/.zplugin"
  - from: "./zsh/.zshrc"
    to: "~/.zshrc"
-# other symlinks
-#  - from: "./ssh"
-#    to: "~/.ssh"
-# - from: "./others/hyper.js"
-#   to: "~/.hyper.js"
-# - from: ""
-#   to: ""
+ - from: "./zsh/starship.toml"
+   to: "~/.config/starship.toml"
