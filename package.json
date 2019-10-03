@@ -17,13 +17,13 @@
   },
   "homepage": "https://github.com/Hazealign/dotfiles#readme",
   "dependencies": {
-    "@types/js-yaml": "^3.11.2",
+    "@types/js-yaml": "^3.12.1",
     "@types/mz": "0.0.32",
-    "js-yaml": "^3.12.0",
+    "js-yaml": "^3.13.1",
     "mz": "^2.7.0",
-    "ts-node": "^7.0.1",
-    "tslint": "^5.11.0",
-    "tslint-config-standard": "^7.1.0",
-    "typescript": "^3.0.1"
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.6.3"
   }
 }
