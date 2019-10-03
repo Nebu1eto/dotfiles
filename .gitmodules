@@ -73,9 +73,9 @@
 [submodule "vim/bundle/kotlin-vim"]
 	path = vim/bundle/kotlin-vim
 	url = https://github.com/udalov/kotlin-vim
-[submodule "zsh/zplug"]
-	path = zsh/zplug
-	url = https://github.com/zplug/zplug.git
 [submodule "vim/bundle/typescript-vim"]
 	path = vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
+[submodule "zsh/zplugin/bin"]
+	path = zsh/zplugin/bin
+	url = https://github.com/zdharma/zplugin

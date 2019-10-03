@@ -1,62 +1,34 @@
-# initialize zplug
-source ~/.zplug/init.zsh
+# initialize zplugin
+source ~/.zplugin/bin/zplugin.zsh
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# Prompt command which is used to set the prompt, includes some extra useful
-# functionality such as showing the last exit code
-__set_prompt() {
-    local EXIT="$?"
-    # Capture last command exit flag first
+# load external shell plugins
+zplugin light simnalamburt/cgitc
+zplugin light simnalamburt/zsh-expand-all
+zplugin light zsh-users/zsh-completions
+if is-at-least 5.3; then
+  zplugin ice silent wait'1' atload'_zsh_autosuggest_start'
+fi
+zplugin light zsh-users/zsh-autosuggestions
+zplugin light zdharma/fast-syntax-highlighting
+zplugin light zdharma/history-search-multi-word
+zplugin light zsh-users/zsh-history-substring-search
+zplugin light djui/alias-tips
 
-    # Clear out prompt
-    PS1=""
+# compinit
+autoload -Uz compinit
+compinit
+zplugin cdreplay
 
-    # If the last command didn't exit 0, display the exit code
-    [ "$EXIT" -ne "0" ] && PS1+="$EXIT "
-
-    # identify debian chroot, if one exists
-    if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-      PS1+="${debian_chroot:+($(cat /etc/debian_chroot))}"
-    fi
-
-    # Render the appropriate format depending on whether we are in a git repo
-    PS1+="$(glit "$PS1_FMT" -e "$PS1_ELSE_FMT")"
-}
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 # define environmental variables
 export PATH=$PATH:/usr/local/bin:~/.cargo/bin:/usr/local/opt/go/libexec/bin:/usr/local/opt/coreutils/libexec/gnubin
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export GOPATH=$HOME/go
-export PS1_FMT="\<#m;*(\b)#m(\B(#~('..')))\(#g(\+)#r(\-))>\[#g;*(\M\A\R\D)#r;*(\m\a\u\d)]\{#m;*;_(\h('@'))}':'#y;*('\w')'\n\$ '"
-export PS1_ELSE_FMT="#g(#*('\u')'@\h')':'#b;*('\w')'\$ '"
-export PROMPT_COMMAND=__set_prompt
 export NVM_DIR=~/.nvm
-export PURE_PROMPT_SYMBOL="λ"
-
-# define modules
-zplug 'mafredri/zsh-async', from:github
-zplug 'sindresorhus/pure', use:'pure.zsh', from:github, as:theme
-zplug 'timothyrowan/betterbrew-zsh-plugin', from:github, use:'betterbrew.plugin.zsh'
-zplug 'djui/alias-tips'
-zplug 'zdharma/fast-syntax-highlighting'
-zplug 'zdharma/history-search-multi-word'
-zplug 'zsh-users/zsh-autosuggestions', use:'zsh-autosuggestions.plugin.zsh'
-zplug 'lukechilds/zsh-better-npm-completion', defer:2
-zplug 'b4b4r07/zplug-doctor', lazy:yes
-zplug 'b4b4r07/zplug-cd', lazy:yes
-zplug 'b4b4r07/zplug-rm', lazy:yes
-
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-    echo
-fi
-
-zplug load
-
-# optionally define some options
-PURE_CMD_MAX_EXEC_TIME=10
 
 # define some aliases.
 alias g='git'
@@ -65,7 +37,6 @@ alias ls="exa --long -aRT -L=1 --git -h"
 alias cat="bat"
 alias hist="history | tail -n"
 
-# initialize
+# initialize external modules
 eval $(thefuck --alias)
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"

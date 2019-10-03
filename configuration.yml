@@ -12,8 +12,8 @@ list:
  - from: "./git/gitignore"
    to: "~/.gitignore"
 # zsh-related symlinks
- - from: "./zsh/zplug"
-   to: "~/.zplug"
+ - from: "./zsh/zplugin"
+   to: "~/.zplugin"
  - from: "./zsh/.zshrc"
    to: "~/.zshrc"
 # other symlinks
