@@ -5,7 +5,9 @@ brew update
 
 # install packages
 brew tap paulche/sudo-touchid
-brew install zsh                     \
+brew install rustup		             \
+             starship		         \
+             zsh                     \
              coreutils               \
              gnupg                   \
              sudo-touchid            \
@@ -29,7 +31,6 @@ brew install zsh                     \
              nifi                    \
              htop                    \
              cocoapods               \
-             mongodb                 \
              postgresql              \
              nginx                   \
              r
@@ -60,8 +61,6 @@ brew cask install visual-studio-code            \
                     forklift                    \
                     alfred                      \
                     google-chrome               \
-                    google-chat                 \
-                    google-drive-file-stream    \
                     intellij-idea               \
                     datagrip                    \
                     goland                      \

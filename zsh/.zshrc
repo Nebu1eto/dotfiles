@@ -31,7 +31,7 @@ bindkey '^[[B' history-substring-search-down
 export PATH=$PATH:/usr/local/bin:~/.cargo/bin:/usr/local/opt/go/libexec/bin:/usr/local/opt/coreutils/libexec/gnubin
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export GOPATH=$HOME/go
-export NVM_DIR=~/.nvm
+export NVM_DIR=/usr/local/Cellar/nvm/0.35.0
 
 # define some aliases.
 alias g='git'
