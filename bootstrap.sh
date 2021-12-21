@@ -61,3 +61,8 @@ ln -s $(pwd)/zsh/zinit ~/.zinit
 ln -s $(pwd)/zsh/.zshrc ~/.zshrc
 ln -s $(pwd)/zsh/starship.toml ~/.config/starship.toml
 
+ln -s $(pwd)/vim ~/.vim
+ln -s $(pwd)/vim/.vimrc ~/.vimrc
+ln -s $(pwd)/vim/.ideavimrc ~/.ideavimrc
+
+
