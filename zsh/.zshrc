@@ -2,7 +2,7 @@
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 
 # define environmental variables
-export PATH=/opt/homebrew/bin:/opt/homebrew/opt/python@3.8/bin:/usr/local/bin:~/.cargo/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/opt/python@3.8/bin:/usr/local/bin:~/.local/bin:~/.cargo/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export NVM_DIR=~/.nvm
 
@@ -40,8 +40,9 @@ bindkey '^[[B' history-substring-search-down
 # define some aliases.
 alias g='git'
 alias vi="vim"
-alias ls="exa --long -aRT --git -h"
-alias cat="bat"
+alias ls="exa --long -a"
+alias lstree="exa --long -aRT --git -h -L=3"
+alias cat="bat --plain"
 alias hist="history | tail -n"
 
 # sensible aliases

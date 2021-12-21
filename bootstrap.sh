@@ -7,8 +7,12 @@ if [ "${OS}" = "linux" ]; then
     
     # APT 설치
     sudo apt update
-    sudo apt install bat build-essential python3.8 tree zsh git git-lfs htop wget postgresql mysql-client zip unzip
+    sudo apt install -y thefuck bat build-essential python3.8 tree zsh git git-lfs htop wget postgresql mysql-client zip unzip
     sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+
+    # Bat 설치
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
 
     # Exa 설치
     wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip
@@ -16,6 +20,10 @@ if [ "${OS}" = "linux" ]; then
     sudo cp ./exa-linux-bin/bin/exa /usr/local/bin/
     sudo cp ./exa-linux-bin/man/exa.1 /usr/share/man/man1/
     sudo cp ./exa-linux-bin/man/exa_colors.5 /usr/share/man/man5/
+    rm -rf ./exa-linux-bin
+    rm -rf ./exa-linux-x86_64-v0.10.0.zip
+
+    sudo chsh -s $(which zsh) $(whoami)
 fi
 
 if [ "${OS}" = "macos" ]; then
@@ -29,11 +37,13 @@ if [ "${OS}" = "macos" ]; then
 fi
 
 # Starship 설치
-sh -c "$(curl -fsSL https://starship.rs/install.sh)"
+FORCE=true sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
 # NVM / Rustup 설치
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup_init.sh
+bash rustup_init.sh -y
+rm -rf rustup_init.sh
 
 rm -rf ~/.zshrc
 rm -rf ~/.zplugin
