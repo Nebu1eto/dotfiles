@@ -1,47 +1,55 @@
-prompt_order = [
-  "cmd_duration",
-  "time",
-  "username",
-  "hostname",
-  "kubernetes",
-  "directory",
-  "git_branch",
-  "git_state",
-  "git_status",
-  "package",
-  "dotnet",
-  "golang",
-  "java",
-  "nodejs",
-  "python",
-  "ruby",
-  "rust",
-  "nix_shell",
-  "memory_usage",
-  "aws",
-  "env_var",
-  "line_break",
-  "jobs",
-  "battery",
-  "character",
-]
+format = """
+$cmd_duration\
+$time\
+$username\
+$hostname\
+$kubernetes\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$package\
+$crystal\
+$dotnet\
+$golang\
+$java\
+$nodejs\
+$python\
+$ruby\
+$rust\
+$nix_shell\
+$memory_usage\
+$aws\
+$env_var\
+$line_break\
+$jobs\
+$battery\
+$character\
+"""
 
 # Don't print a new line at start of prompt
 add_newline = true
 
+[username]
+show_always = true
+style_user = "bold blue"
+
+[hostname]
+ssh_only = false
+disabled = false
+style = "bold purple"
+
 # Character Replacements
 [character]
-symbol = "λ"
+success_symbol = "[λ](bold green)"
+error_symbol = "[λ](bold red)"
+vicmd_symbol = "[λ](bold green)"
 
 [aws]
 disabled = true
 
 [battery]
 disabled = true
-
-[cmd_duration]
-min_time = 5
-prefix = 'duration: '
 
 [directory]
 truncation_length = 5
@@ -61,6 +69,11 @@ style = "bold blue"
 truncation_length = 30
 
 [time]
-'12hr' = true
+use_12hr = true
 disabled = false
-format = "🕙  [ %p %H:%M:%S ] \n"
+time_format = "%p %H:%M:%S"
+format = "[$time]($style) \n"
+
+[cmd_duration]
+min_time = 5
+format = "Command Took: [$duration](bold yellow) / "

@@ -19,9 +19,6 @@
 [submodule "vim/bundle/vim-airline"]
 	path = vim/bundle/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
-[submodule "vim/bundle/tlib_vim"]
-	path = vim/bundle/tlib_vim
-	url = https://github.com/tomtom/tlib_vim.git
 [submodule "vim/bundle/vim-addon-mw-utils"]
 	path = vim/bundle/vim-addon-mw-utils
 	url = https://github.com/MarcWeber/vim-addon-mw-utils.git
@@ -31,9 +28,6 @@
 [submodule "vim/bundle/vim-bookmarks"]
 	path = vim/bundle/vim-bookmarks
 	url = https://github.com/MattesGroeger/vim-bookmarks
-[submodule "vim/bundle/gundo.vim"]
-	path = vim/bundle/gundo.vim
-	url = https://github.com/sjl/gundo.vim
 [submodule "vim/bundle/tagbar"]
 	path = vim/bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
@@ -49,9 +43,6 @@
 [submodule "vim/bundle/tabline.vim"]
 	path = vim/bundle/tabline.vim
 	url = https://github.com/mkitt/tabline.vim
-[submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
-	url = https://github.com/tpope/vim-fugitive
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular
@@ -76,6 +67,6 @@
 [submodule "vim/bundle/typescript-vim"]
 	path = vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
-[submodule "zsh/zplugin/bin"]
-	path = zsh/zplugin/bin
-	url = https://github.com/zdharma/zplugin
+[submodule "zsh/zinit"]
+	path = zsh/zinit
+	url = https://github.com/zdharma-continuum/zinit.git

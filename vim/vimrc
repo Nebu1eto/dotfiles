@@ -383,11 +383,6 @@ map <F3> <ESC>:!cat %\|pbcopy<CR>
 "" -- Markdown Settings
 let vim_markdown_preview_hotkey='<C-m>'
 
-"Added by android-vim:
-set tags+=~/.vim/tags
-autocmd Filetype java setlocal omnifunc=javacomplete#Complete
-let g:SuperTabDefaultCompletionType = 'context'
-
 set laststatus=2
 let g:airline_powerline_fonts = 1 
 
