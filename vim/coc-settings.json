@@ -1,0 +1,24 @@
+{
+  "git.addGBlameToVirtualText": true,
+  "rust-analyzer.updates.prompt": false,
+  "coc.source.around.enable": false,
+  "coc.source.buffer.enable": false,
+  "git.addedSign.text": "▎",
+  "git.changedSign.text": "▎",
+  "git.removedSign.text": "▎",
+  "git.changeRemovedSign.text": "▶",
+  "git.topRemovedSign.text": "◥",
+  "git.addedSign.hlGroup": "GitGutterAdd",
+  "git.changedSign.hlGroup": "GitGutterChange",
+  "git.removedSign.hlGroup": "GitGutterDelete",
+  "git.topRemovedSign.hlGroup": "GitGutterDelete",
+  "git.changeRemovedSign.hlGroup": "GitGutterChangeDelete",
+  "explorer.icon.enableNerdfont": true,
+  "explorer.width": 40,
+  "explorer.keyMappings.global": {
+    "<right>": "expand",
+    "<left>": "shrink"
+  },
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": true
+}

@@ -29,7 +29,6 @@
 [user]
 	name = Haze Lee
 	email = hazelee@realignist.me
-	signingkey = 6DCEBB0269A43C01291C308005EFB5E90AC9A759
 [credential]
     helper = osxkeychain
 [diff]
@@ -43,4 +42,6 @@
 [http "https://gopkg.in"]
 	followRedirects = true
 [commit]
-	gpgsign = true
+	gpgsign = false
+[init]
+	defaultBranch = main

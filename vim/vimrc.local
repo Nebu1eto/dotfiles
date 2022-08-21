@@ -1,0 +1,3 @@
+"" If you use powerline patched fonts
+let g:airline_powerline_fonts = 1
+
