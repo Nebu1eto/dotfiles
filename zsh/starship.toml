@@ -1,6 +1,6 @@
 format = """
+$memory_usage\
 $cmd_duration\
-$time\
 $username\
 $hostname\
 $kubernetes\
@@ -8,36 +8,45 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$package\
-$crystal\
-$dotnet\
 $golang\
-$java\
 $nodejs\
 $python\
+$terraform\
 $ruby\
 $rust\
-$nix_shell\
-$memory_usage\
-$aws\
-$env_var\
-$line_break\
-$jobs\
 $battery\
+$nix_shell\
+$line_break\
+$env_var\
+$jobs\
 $character\
 """
+
+scan_timeout = 50
+command_timeout = 300
 
 # Don't print a new line at start of prompt
 add_newline = true
 
+[line_break]
+disabled = false
+
+[memory_usage]
+disabled = false
+threshold = 75
+format = "[High Memory Used! RAM: [${ram}](green) / Swap: [${swap}](green)](bold green)\n"
+style = "bold green"
+
 [username]
 show_always = true
 style_user = "bold blue"
+format = "[$user]($style)@"
 
 [hostname]
 ssh_only = false
 disabled = false
 style = "bold purple"
+format = "[$hostname]($style)\n"
 
 # Character Replacements
 [character]
@@ -52,7 +61,10 @@ disabled = true
 disabled = true
 
 [directory]
-truncation_length = 5
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncate_to_repo = true
+style = "bold green"
 
 [env_var]
 disabled = true
@@ -67,13 +79,12 @@ bisect = "BISECT"
 [git_branch]
 style = "bold blue"
 truncation_length = 30
-
-[time]
-use_12hr = true
-disabled = false
-time_format = "%p %H:%M:%S"
-format = "[$time]($style) \n"
+only_attached = true
 
 [cmd_duration]
 min_time = 5
-format = "Command Took: [$duration](bold yellow) / "
+format = "[Command Duration: ](bold yellow)[$duration](yellow)\n"
+
+[python]
+format = 'via [py$version]($style)'
+version_format = "${major}.${minor}"
