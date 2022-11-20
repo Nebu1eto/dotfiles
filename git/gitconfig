@@ -2,6 +2,7 @@
 [core]
     excludesfile = ~/.gitignore
     pager = less -F
+    editor = nvim
 [alias]
     history = log --graph --pretty=format:'%C(yellow)%h%Creset \
         -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
@@ -29,19 +30,12 @@
 [user]
 	name = Haze Lee
 	email = hazelee@realignist.me
-[credential]
-    helper = osxkeychain
-[diff]
-    tool = vimdiff
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvezMaBWT0s3m8dRHLvE1SKkgYCO6Ih52QIfRRd7bKm
 [difftool]
     prompt = false
-[mergetool "fugitive"]
-    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
-[merge]
-    tool = fugitive
-[http "https://gopkg.in"]
-	followRedirects = true
 [commit]
 	gpgsign = false
 [init]
 	defaultBranch = main
+[gpg]
+    format = ssh

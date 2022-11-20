@@ -71,11 +71,14 @@ rm -rf ~/.vim
 rm -rf ~/.ideavimrc
 rm -rf ~/.config/nvim
 
+rm -rf ~/.ssh
+
 ln -s $(pwd)/zsh/zinit ~/.zinit
 ln -s $(pwd)/zsh/.zshrc ~/.zshrc
 ln -s $(pwd)/zsh/starship.toml ~/.config/starship.toml
 
 mkdir -p ~/.vim
+mkdir -p ~/.ssh
 mkdir -p ~/.config/nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -88,3 +91,7 @@ ln -s $(pwd)/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 ln -s $(pwd)/git/gitignore ~/.gitignore
 ln -s $(pwd)/git/gitconfig ~/.gitconfig
+
+ln -s $(pwd)/ssh/config ~/.ssh/config
+ln -s $(pwd)/ssh/hazealign.pub ~/.ssh/hazealign.pub
+ln -s $(pwd)/ssh/haze-iamdt.pub ~/.ssh/haze-iamdt.pub
