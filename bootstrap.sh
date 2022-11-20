@@ -12,7 +12,7 @@ if [ "${OS}" = "linux" ]; then
 
     # APT 설치
     sudo apt update
-    sudo apt install -y thefuck bat build-essential tree zsh git git-lfs htop wget postgresql-client mysql-client zip unzip 
+    sudo apt install -y bat build-essential tree zsh git git-lfs htop wget postgresql-client mysql-client zip unzip 
 
     # python 설치
     sudo add-apt-repository ppa:deadsnakes/ppa -y
@@ -26,6 +26,9 @@ if [ "${OS}" = "linux" ]; then
     curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     sudo python3.9 get-pip.py
     sudo python3.10 get-pip.py
+
+    # thefuck 설치
+    sudo pip install thefuck
 
     # Bat 설치
     mkdir -p ~/.local/bin
