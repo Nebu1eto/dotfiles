@@ -2,13 +2,38 @@
 [ -z "${OS}" ] && . lib/common.sh
 
 # 우리는 리눅스(그것도 우분투 22.04)와 macOS만 지원한다.
-if [ "${OS}" = "linux" ]; then
+if [ "${CODESPACE_NAME}" != "" ]; then
+    echo "Codespaces Dependencies (Debian Bullseye)."
+
+    git submodule update --init --recursive
+
+    curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    sudo python3.9 get-pip.py
+    sudo python3.10 get-pip.py
+    rm -rf get-pip.py
+
+    sudo apt update
+
+    wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb
+    sudo dpkg -i nvim-linux64.deb
+    rm -rf nvim-linux64.deb
+
+    wget https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
+    sudo dpkg -i bat_0.22.1_amd64.deb
+    rm -rf bat_0.22.1_amd64.deb
+
+    sudo pip install thefuck
+
+    wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+    sudo dpkg -i lsd_0.23.1_amd64.deb
+    rm -rf lsd_0.23.1_amd64.deb
+
+    sudo chsh -s $(which zsh) $(whoami)
+fi;
+
+
+if [ "${OS}" = "linux" ] && [ "${CODESPACE_NAME}" = "" ]; then
     echo 'Install Linux Dependencies.'
-    
-    # Codespace일 경우를 대비해 다시 clone
-    if [ $USER != 'codespace' ]; then
-        git submodule update --init --recursive
-    fi;
 
     # APT 설치
     sudo apt update
@@ -26,6 +51,7 @@ if [ "${OS}" = "linux" ]; then
     curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     sudo python3.9 get-pip.py
     sudo python3.10 get-pip.py
+    rm -rf get-pip.py
 
     # thefuck 설치
     sudo pip install thefuck
@@ -89,16 +115,15 @@ ln -s $(pwd)/zsh/zinit ~/.zinit
 ln -s $(pwd)/zsh/.zshrc ~/.zshrc
 ln -s $(pwd)/zsh/starship.toml ~/.config/starship.toml
 
-mkdir -p ~/.vim
+mkdir -p ~/.vim/plugged 
 mkdir -p ~/.ssh
 mkdir -p ~/.config/nvim
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ln -s $(pwd)/vim/vimrc ~/.vimrc
 ln -s $(pwd)/vim/vimrc.local ~/.vimrc.local
-ln -s $(pwd)/vim/plugged ~/.vim/plugged
-ln -s $(pwd)/vim/init.vim ~/.config/nvim/init.vim
+ln -s $(pwd)/vim/vimrc ~/.config/nvim/init.vim
 ln -s $(pwd)/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 ln -s $(pwd)/git/gitignore ~/.gitignore
@@ -106,3 +131,7 @@ ln -s $(pwd)/git/gitconfig ~/.gitconfig
 
 ln -s $(pwd)/ssh/config ~/.ssh/config
 ln -s $(pwd)/ssh/allowed_signers ~/.ssh/allowed_signers
+
+if [ "${CODESPACE_NAME}" != "" ]; then
+    git config --global commit.gpgsign false
+fi;
