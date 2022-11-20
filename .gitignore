@@ -124,3 +124,6 @@ typings/
 
 # zsh-related stuffs
 zsh/zplugin/**
+
+# Private Key
+*.pem

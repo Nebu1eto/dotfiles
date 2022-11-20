@@ -29,8 +29,8 @@
     pretty = fuller
 [user]
 	name = Haze Lee
-	email = hazelee@realignist.me
-    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvezMaBWT0s3m8dRHLvE1SKkgYCO6Ih52QIfRRd7bKm
+	email = haze.lee@iamdt.co.kr
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBRaYmPUWO1BYt7KrddLgtVKg+ZWDEQ9iUFBsKOtqzLh
 [difftool]
     prompt = false
 [commit]

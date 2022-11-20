@@ -93,5 +93,4 @@ ln -s $(pwd)/git/gitignore ~/.gitignore
 ln -s $(pwd)/git/gitconfig ~/.gitconfig
 
 ln -s $(pwd)/ssh/config ~/.ssh/config
-ln -s $(pwd)/ssh/hazealign.pub ~/.ssh/hazealign.pub
-ln -s $(pwd)/ssh/haze-iamdt.pub ~/.ssh/haze-iamdt.pub
+ln -s $(pwd)/ssh/allowed_signers ~/.ssh/allowed_signers

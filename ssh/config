@@ -1,15 +1,11 @@
-# TODO: 여기에 각 플랫폼에 맞게 1Password SSH 연결을 위한 도구를 설정하세요.
-
 # Personal GitHub
 Host hazealign
 	HostName github.com
 	User git
-	IdentityFile ~/.ssh/hazealign.pub
-  IdentitiesOnly yes
+	IdentityFile ~/.ssh/hazealign.pem
 
 # Work GitHub
 Host iamdt
   HostName github.com
   User git
-  IdentityFile ~/.ssh/haze-iamdt.pub
-	IdentitiesOnly yes
+  IdentityFile ~/.ssh/haze-iamdt.pem
