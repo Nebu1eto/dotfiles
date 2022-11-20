@@ -2,7 +2,7 @@
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 
 # define environmental variables
-export PATH=/opt/homebrew/bin:/opt/homebrew/opt/python@3.8/bin:/usr/local/bin:~/.local/bin:~/.cargo/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH:="$HOME/.poetry/bin"
+export PATH=/opt/homebrew/bin:/opt/homebrew/opt/python@3.8/bin:/usr/local/bin:~/.local/bin:~/.cargo/bin:/usr/local/opt/coreutils/libexec/gnubin:$PATH:~/.local/bin
 export MANPATH=/usr/local/opt/coreutils/libexec/gnuman:$MANPATH
 export NVM_DIR=~/.nvm
 

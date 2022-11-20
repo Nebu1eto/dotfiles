@@ -7,7 +7,7 @@ if [ "${OS}" = "linux" ]; then
     
     # Codespace일 경우를 대비해 다시 clone
     if [ $USER != 'codespace' ]; then
-      git submodule update --init --recursive
+        git submodule update --init --recursive
     fi;
 
     # APT 설치
@@ -32,8 +32,16 @@ if [ "${OS}" = "linux" ]; then
     ln -s /usr/bin/bat ~/.local/bin/bat
 
     # LSDeluxe 설치
-    wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
-    sudo dpkg -i lsd_0.23.1_amd64.deb
+    arch=$(uname -i)
+    if [[ $arch == x86_64* ]]; then
+        wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+        sudo dpkg -i lsd_0.23.1_amd64.deb
+        rm -rf lsd_0.23.1_amd64.deb
+    elif [[ $arch == arm* ]] || [[ $arch = aarch64 ]]; then
+        wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_arm64.deb
+        sudo dpkg -i lsd_0.23.1_arm64.deb
+        rm -rf lsd_0.23.1_arm64.deb
+    fi;
 
     sudo chsh -s $(which zsh) $(whoami)
 fi;
@@ -51,11 +59,12 @@ fi;
 # Starship 설치
 FORCE=true sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
-# NVM / Rustup 설치
+# NVM / Rustup / Poetry 설치
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup_init.sh
 bash rustup_init.sh -y
 rm -rf rustup_init.sh
+curl -sSL https://install.python-poetry.org | python3 -
 
 rm -rf ~/.zshrc
 rm -rf ~/.zplugin
