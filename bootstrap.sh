@@ -1,27 +1,31 @@
 #!/bin/bash
 [ -z "${OS}" ] && . lib/common.sh
 
-# 우리는 리눅스(그것도 우분투)와 macOS만 지원한다.
+# 우리는 리눅스(그것도 우분투 22.04)와 macOS만 지원한다.
 if [ "${OS}" = "linux" ]; then
     echo 'Install Linux Dependencies.'
     
     # APT 설치
     sudo apt update
-    sudo apt install -y thefuck bat build-essential python3.8 tree zsh git git-lfs htop wget postgresql mysql-client zip unzip
+    sudo apt install -y thefuck bat build-essential tree zsh git git-lfs htop wget postgresql-client-14 mysql-client zip unzip 
     sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+
+    # python 설치
+    sudo add-apt-repository ppa:deadsnakes/ppa -y
+    sudo apt update 
+    sudo apt install python3.9-full python3.10-full -y
+
+    curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    sudo python3.9 get-pip.py
+    sudo python3.10 get-pip.py
 
     # Bat 설치
     mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
+    ln -s /usr/bin/bat ~/.local/bin/bat
 
-    # Exa 설치
-    wget https://github.com/ogham/exa/releases/download/v0.10.0/exa-linux-x86_64-v0.10.0.zip
-    unzip exa-linux-x86_64-v0.10.0.zip -d exa-linux-bin
-    sudo cp ./exa-linux-bin/bin/exa /usr/local/bin/
-    sudo cp ./exa-linux-bin/man/exa.1 /usr/share/man/man1/
-    sudo cp ./exa-linux-bin/man/exa_colors.5 /usr/share/man/man5/
-    rm -rf ./exa-linux-bin
-    rm -rf ./exa-linux-x86_64-v0.10.0.zip
+    # LSDeluxe 설치
+    wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+    sudo dpkg -i lsd_0.23.1_amd64.deb
 
     sudo chsh -s $(which zsh) $(whoami)
 fi
@@ -31,7 +35,7 @@ if [ "${OS}" = "macos" ]; then
     
     # Homebrew 설치
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install exa bat python@3.8 thefuck tree thefuck zsh svn git git-lfs htop wget postgresql mariadb
+    brew install lsd bat python@3.9 python@3.10 python@3.11 thefuck tree thefuck zsh svn git git-lfs htop wget postgresql mariadb
     brew tap homebrew/cask-fonts
     brew install font-roboto font-roboto-mono font-fira-code
 fi
