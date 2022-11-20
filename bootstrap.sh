@@ -5,15 +5,23 @@
 if [ "${OS}" = "linux" ]; then
     echo 'Install Linux Dependencies.'
     
+    # Codespace일 경우를 대비해 다시 clone
+    if [ $USER != 'codespace' ]; then
+      git submodule update --init --recursive
+    fi;
+
     # APT 설치
     sudo apt update
-    sudo apt install -y thefuck bat build-essential tree zsh git git-lfs htop wget postgresql-client-14 mysql-client zip unzip 
-    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+    sudo apt install -y thefuck bat build-essential tree zsh git git-lfs htop wget postgresql-client mysql-client zip unzip 
 
     # python 설치
     sudo add-apt-repository ppa:deadsnakes/ppa -y
     sudo apt update 
     sudo apt install python3.9-full python3.10-full -y
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 2
+    sudo update-alternatives --install /usr/bin/python3 python /usr/bin/python3.10 1
+    sudo update-alternatives --install /usr/bin/python3 python /usr/bin/python3.9 2
 
     curl -sSL https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     sudo python3.9 get-pip.py
@@ -28,7 +36,7 @@ if [ "${OS}" = "linux" ]; then
     sudo dpkg -i lsd_0.23.1_amd64.deb
 
     sudo chsh -s $(which zsh) $(whoami)
-fi
+fi;
 
 if [ "${OS}" = "macos" ]; then
     echo 'Install macOS Dependencies.'
@@ -38,7 +46,7 @@ if [ "${OS}" = "macos" ]; then
     brew install lsd bat python@3.9 python@3.10 python@3.11 thefuck tree thefuck zsh svn git git-lfs htop wget postgresql mariadb
     brew tap homebrew/cask-fonts
     brew install font-roboto font-roboto-mono font-fira-code
-fi
+fi;
 
 # Starship 설치
 FORCE=true sh -c "$(curl -fsSL https://starship.rs/install.sh)"
@@ -58,7 +66,8 @@ rm -rf ~/.gitconfig
 rm -rf ~/.gitignore
 
 rm -rf ~/.vimrc
-rm -rf ~/.vim 
+rm -rf ~/.vimrc.local 
+rm -rf ~/.vim
 rm -rf ~/.ideavimrc
 rm -rf ~/.config/nvim
 
@@ -72,7 +81,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 ln -s $(pwd)/vim/vimrc ~/.vimrc
-ln -s $(pwd)/vim/vimrc.local ~/.vimmrc.local
+ln -s $(pwd)/vim/vimrc.local ~/.vimrc.local
 ln -s $(pwd)/vim/plugged ~/.vim/plugged
 ln -s $(pwd)/vim/init.vim ~/.config/nvim/init.vim
 ln -s $(pwd)/vim/coc-settings.json ~/.config/nvim/coc-settings.json
