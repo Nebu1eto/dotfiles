@@ -1,0 +1,21 @@
+{
+  "pyright.enable": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.useLibraryCodeForType": true,
+  "python.venvPath": "dist/export/python/virtualenvs/python-default/3.10.8",
+  "python.formatting.provider": "black",
+  "python.formatting.blackPath": "dist/export/python/virtualenvs/tools/black/bin/black",
+  "python.linting.enabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.mypyPath": "dist/export/python/virtualenvs/tools/mypy/bin/mypy",
+  "python.linting.flake8Path": "dist/export/python/virtualenvs/tools/flake8/bin/flake8",
+  "python.sortImports.path": "dist/export/python/virtualenvs/tools/isort/bin/isort",
+  "pyright.completion.importSupport": true,
+  "pyright.completion.snippetSupport": true,
+  "pyright.organizeimports.provider": "isort",
+  "pyright.inlayHints.functionReturnType": true,
+  "pyright.inlayHints.variableTypes": true
+}
