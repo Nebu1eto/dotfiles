@@ -3,10 +3,11 @@
     excludesfile = ~/.gitignore
     pager = less -F
     editor = nvim
+  quotepath = false
 [alias]
     history = log --graph --pretty=format:'%C(yellow)%h%Creset \
         -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
-        --abbrev-commit --date=short --date-order -n30
+        --abbrev-commit --date=short --date-order -n100
     c = clone
     pl = pull
     ps = push
@@ -28,14 +29,28 @@
 [format]
     pretty = fuller
 [user]
-	name = Haze Lee
-	email = hazelee@realignist.me
-    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvezMaBWT0s3m8dRHLvE1SKkgYCO6Ih52QIfRRd7bKm
+  name = Haze Lee
+  email = hazelee@realignist.me
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvezMaBWT0s3m8dRHLvE1SKkgYCO6Ih52QIfRRd7bKm
 [difftool]
-    prompt = false
+  prompt = false
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
+[mergetool "fugitive"]
+    cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[merge]
+    tool = fugitive
 [commit]
-	gpgsign = true
+  gpgsign = true
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [gpg]
-    format = ssh
+  format = ssh
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+  allowedSignersFile = /Users/Realignist/.ssh/allowed_signers
+
+[push]
+  autoSetupRemote = true
