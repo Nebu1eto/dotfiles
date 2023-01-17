@@ -43,9 +43,25 @@ opt.foldnestmax = 2
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
+opt.list = true
+
+g.nord_borders = true
+g.nord_disable_background = false
+g.nord_italic = false
+g.nord_uniform_diff_background = true
+g.nord_bold = false
+
+require("indent_blankline").setup {
+  show_end_of_line = false,
+  space_char_blankline = " ",
+  show_current_context = true,
+  show_current_context_start = true,
+}
 
 -- Set colorscheme as nord
 vim.cmd [[colorscheme nord]]
+
+require('nord').set()
 
 -- Plugins Initialization
 require('hlslens').setup()
@@ -99,7 +115,7 @@ function _G.open_terminal_in_bottom_side()
   vim.api.nvim_command('set ma')
 end
 
-keyset('n', 'F', '<CMD>lua _G.format_code()<CR>', {silent = true})
+keyset('n', '<C-f>', '<CMD>lua _G.format_code()<CR>', {silent = true})
 keyset('n', 'N', '<CMD>lua _G.lint_code()<CR>', {silent = true})
 keyset('n', 'T', '<CMD>lua _G.new_tab()<CR>', {silent = true})
 
@@ -142,6 +158,8 @@ keyset('n', 'L', '<CMD>NvimTreeOpen<CR>', {silent = true})
 -- Initializing NvimTree
 require('nvim-tree').setup({
   sort_by = 'case_sensitive',
+  hijack_cursor = true,
+  select_prompts = true,
   view = {
     adaptive_size = false,
     width = 40,
@@ -149,8 +167,8 @@ require('nvim-tree').setup({
     mappings = {
       list = {
         { key = 'u', action = 'dir_up' },
-        { key = 'r', action = 'rename' },
-        { key = 'd', action = 'delete' },
+        { key = 'm', action = 'rename' },
+        { key = 'r', action = 'delete' },
         { key = 'n', action = 'create' },
 	      { key = '.', action = 'expand_all' },
       },
@@ -206,6 +224,11 @@ require('gitsigns').setup({
   },
 })
 
+local highlights = require("nord").bufferline.highlights({
+    italic = true,
+    bold = true,
+})
+
 -- Initialize BufferLine
 require('bufferline').setup({
   options = {
@@ -240,12 +263,18 @@ require('bufferline').setup({
     always_show_bufferline = false,
     hover = {
       enabled = true,
-      delay = 100,
       reveal = { 'close' }
     },
     sort_by = 'tabs',
+    indicator = {
+      style = "underline",
+    },
   },
+  highlights = highlights,
 })
+
+local gps = require("nvim-gps")
+gps.setup()
 
 -- Initialize Lualine
 require('lualine').setup {
@@ -255,8 +284,8 @@ require('lualine').setup {
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
-      statusline = {},
-      winbar = {},
+      statusline = { "NvimTree" },
+      winbar = { "NvimTree" },
     },
     ignore_focus = {},
     always_divide_middle = true,
@@ -268,7 +297,7 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
+    lualine_a = {'tabs', 'mode'},
     lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {'filename'},
     lualine_x = {'encoding', 'location'},
@@ -283,10 +312,14 @@ require('lualine').setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
-  winbar = {},
-  inactive_winbar = {},
-  extensions = {}
+  winbar = { 
+    lualine_a = { { gps.get_location, cond = gps.is_available } },
+    lualine_b = { "g:coc_status" },
+    lualine_x = { "location", "filename", "diagnostics" },
+  },
+  extensions = {
+    "nvim-tree", "fzf",
+  }
 }
 
 -- Initialize Scrollbar
@@ -361,20 +394,43 @@ require('nvim-treesitter.configs').setup({
     "rego",
     "scss",
   },
-  disabled = {
-    "lua",
-  },
   sync_install = false,
   auto_install = true,
   highlight = {
     enable = true,
+    disable = { "lua" },
     additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true
   },
-
 })
+
+-- Initialize Search and Jump
+local sj = require("sj")
+sj.setup({
+  auto_jump = true,
+  forward_search = true,
+  highlights_timeout = 0,
+  max_pattern_length = 0,
+  pattern_type = "vim",
+  preserve_highlights = true,
+  prompt_prefix = "",
+  relative_labels = true,
+  search_scope = "visible_lines",
+  select_window = false,
+  separator = ":",
+  update_search_register = false,
+  use_last_pattern = false,
+  use_overlay = true,
+  wrap_jumps = vim.o.wrapscan,
+})
+
+-- bind s to search and jump, C-[/C-] to navigate, C-z to redo
+vim.keymap.set("n", "<C-s>", sj.run)
+vim.keymap.set("n", "<C-[>", sj.prev_match)
+vim.keymap.set("n", "<C-]>", sj.next_match)
+vim.keymap.set("n", "<C-z>", sj.redo)
 
 -- Required Packer Settings **IMPORTANT**
 local create_cmd = vim.api.nvim_create_user_command

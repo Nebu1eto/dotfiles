@@ -20,9 +20,9 @@ return require("packer").startup(function (use)
     requires = 'nvim-tree/nvim-web-devicons'
   }
 
-  use {
-    "arcticicestudio/nord-vim",
-  }
+  use { 'shaunsingh/nord.nvim' }
+
+  use { "lukas-reineke/indent-blankline.nvim" }
 
   use {
     'nvim-lualine/lualine.nvim',
@@ -38,31 +38,10 @@ return require("packer").startup(function (use)
      branch = 'release',
   }
 
-  -- Deprecated: Install extension as CocInstall.
-  -- use {
-  --   'neoclide/coc-highlight',
-  --   run = 'yarn install --frozen-lockfile'
-  -- }
-  -- use {
-  --   'neoclide/coc-tsserver',
-  --   run = 'yarn install --frozen-lockfile'
-  -- }
-  -- use {
-  --   'neoclide/coc-json',
-  --   run = 'yarn install --frozen-lockfile',
-  -- }
-  -- use {
-  --   'neoclide/coc-css',
-  --   run = 'yarn install --frozen-lockfile',
-  -- }
-  -- use {
-  --   'neoclide/coc-html',
-  --   run = 'yarn install --frozen-lockfile',
-  -- }
-  -- use {
-  --   'fannheyward/coc-pyright',
-  --   run = 'yarn install --frozen-lockfile',
-  -- }
+  use {
+	  "SmiteshP/nvim-gps",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
 
   -- FZF
   use { 'junegunn/fzf', run = function () vim.api.nvim_eval("fzf#install()") end }
@@ -78,4 +57,7 @@ return require("packer").startup(function (use)
     end
   }
 
+  use {
+    'woosaaahh/sj.nvim'
+  }
 end)
