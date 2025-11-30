@@ -29,9 +29,9 @@
 [format]
     pretty = fuller
 [user]
-  name = Haze Lee
-  email = hazelee@realignist.me
-  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvezMaBWT0s3m8dRHLvE1SKkgYCO6Ih52QIfRRd7bKm
+    name = Haze Lee
+    email = hazelee@realignist.me
+    signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBvezMaBWT0s3m8dRHLvE1SKkgYCO6Ih52QIfRRd7bKm
 [difftool]
   prompt = false
 [diff]
@@ -54,3 +54,10 @@
 
 [push]
   autoSetupRemote = true
+[pull]
+	rebase = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f

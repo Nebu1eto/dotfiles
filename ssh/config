@@ -1,11 +1,16 @@
-# Personal GitHub
-Host hazealign
-	HostName github.com
-	User git
-	IdentityFile ~/.ssh/hazealign.pem
+# Added by OrbStack: 'orb' SSH host for Linux machines
+# This only works if it's at the top of ssh_config (before any Host blocks).
+# This won't be added again if you remove it.
+Include ~/.orbstack/ssh/config
 
-# Work GitHub
-Host iamdt
+Host *
+  IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+
+# Personal GitHub
+Host nebuleto.github.com
   HostName github.com
   User git
-  IdentityFile ~/.ssh/haze-iamdt.pem
+  IdentityFile ~/.ssh/nebuleto.pub
+  IdentitiesOnly yes
+
+

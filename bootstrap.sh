@@ -75,16 +75,6 @@ if [ "${OS}" = "linux" ] && [ "${CODESPACE_NAME}" = "" ]; then
     sudo chsh -s $(which zsh) $(whoami)
 fi;
 
-if [ "${OS}" = "macos" ]; then
-    echo 'Install macOS Dependencies.'
-    
-    # Homebrew 설치
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install lsd bat python@3.9 python@3.10 python@3.11 thefuck tree thefuck zsh svn git git-lfs htop wget postgresql mariadb
-    brew tap homebrew/cask-fonts
-    brew install font-roboto font-roboto-mono font-fira-code
-fi;
-
 # Starship 설치
 FORCE=true sh -c "$(curl -fsSL https://starship.rs/install.sh)"
 
