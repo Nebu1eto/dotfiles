@@ -105,16 +105,7 @@ ln -s $(pwd)/zsh/zinit ~/.zinit
 ln -s $(pwd)/zsh/.zshrc ~/.zshrc
 ln -s $(pwd)/zsh/starship.toml ~/.config/starship.toml
 
-mkdir -p ~/.vim/plugged 
 mkdir -p ~/.ssh
-mkdir -p ~/.config/nvim
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-ln -s $(pwd)/vim/vimrc ~/.vimrc
-ln -s $(pwd)/vim/vimrc.local ~/.vimrc.local
-ln -s $(pwd)/vim/vimrc ~/.config/nvim/init.vim
-ln -s $(pwd)/vim/coc-settings.json ~/.config/nvim/coc-settings.json
 
 ln -s $(pwd)/git/gitignore ~/.gitignore
 ln -s $(pwd)/git/gitconfig ~/.gitconfig
@@ -122,6 +113,3 @@ ln -s $(pwd)/git/gitconfig ~/.gitconfig
 ln -s $(pwd)/ssh/config ~/.ssh/config
 ln -s $(pwd)/ssh/allowed_signers ~/.ssh/allowed_signers
 
-if [ "${CODESPACE_NAME}" != "" ]; then
-    git config --global commit.gpgsign false
-fi;
