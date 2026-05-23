@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v rustup >/dev/null 2>&1; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+fi
+
+if [ ! -d "$HOME/.nvm" ]; then
+  curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+fi
+
+if ! command -v poetry >/dev/null 2>&1; then
+  curl -sSL https://install.python-poetry.org | python3 -
+fi
+
+{{- if eq .chezmoi.os "linux" }}
+if ! command -v starship >/dev/null 2>&1; then
+  curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
+fi
+
+if ! command -v zellij >/dev/null 2>&1 && [ -x "$HOME/.cargo/bin/cargo" ]; then
+  "$HOME/.cargo/bin/cargo" install zellij --locked
+fi
+{{- end }}

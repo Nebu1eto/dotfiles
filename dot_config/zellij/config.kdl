@@ -1,0 +1,71 @@
+// 주의: clear-defaults=true가 되면 기본 단축키가 다 사라집니다.
+keybinds clear-defaults=false {
+    normal {
+        // Ghostty에서 Alt + Left/Right 했을 때 생기는 이슈에 대한 임시 대응
+        unbind "Alt f"
+        bind "Alt F" {  ToggleFloatingPanes; }
+
+        // Cmd + F로 검색, Cmd + C로 복사
+        bind "Super f" { SwitchToMode "entersearch"; }
+        bind "Super c" { Copy; }
+
+        // Cmd + Alt + Left/Right로 탭간 전환
+        bind "Super Alt Left" { GoToPreviousTab; }
+        bind "Super Alt Right" { GoToNextTab; }
+
+        // 단축어를 통한 Pane Resize
+        bind "Alt Shift left" { Resize "Increase left"; }
+        bind "Alt Shift down" { Resize "Increase down"; }
+        bind "Alt Shift up" { Resize "Increase up"; }
+        bind "Alt Shift right" { Resize "Increase right"; }
+
+        // Ghostty와 같은 Pane Navigation
+        bind "Super [" { FocusPreviousPane; }
+        bind "Super ]" { FocusNextPane; }
+
+        // 새 탭, 탭(Pane) 닫기 처리
+        bind "Super w" { CloseFocus; }
+        bind "Super n" { NewTab; }
+        bind "Super t" { NewTab; }
+
+        // Split 처리(vertical/horizontal)
+        bind "Super Shift d" { NewPane "down"; SwitchToMode "normal"; }
+        bind "Super d" { NewPane "Right"; SwitchToMode "normal"; }
+
+        // 탭간 전환
+        bind "Super 1" { GoToTab 1; SwitchToMode "normal"; }
+        bind "Super 2" { GoToTab 2; SwitchToMode "normal"; }
+        bind "Super 3" { GoToTab 3; SwitchToMode "normal"; }
+        bind "Super 4" { GoToTab 4; SwitchToMode "normal"; }
+        bind "Super 5" { GoToTab 5; SwitchToMode "normal"; }
+        bind "Super 6" { GoToTab 6; SwitchToMode "normal"; }
+        bind "Super 7" { GoToTab 7; SwitchToMode "normal"; }
+        bind "Super 8" { GoToTab 8; SwitchToMode "normal"; }
+        bind "Super 9" { GoToTab 9; SwitchToMode "normal"; }
+
+        // Cmd+K로 Clear 처리
+        bind "Super k" { Clear; Write 10; }
+
+        // 기본 단축키의 바인딩 해제
+        unbind "Ctrl o"
+        unbind "Ctrl s"
+        unbind "Ctrl q"
+        unbind "Ctrl b"
+        unbind "Ctrl g"
+        unbind "Alt n"
+        bind "Alt s" { SwitchToMode "Session"; }
+    }
+}
+
+// 설정값
+simplified_ui true
+theme "nord"
+default_layout "compact"
+pane_frames false
+on_force_close "detach"
+scroll_buffer_size 10000000
+session_name "Main"
+attach_to_session true
+auto_layout true
+show_startup_tips false
+// layout_dir "~/.config/zellij/layouts/"

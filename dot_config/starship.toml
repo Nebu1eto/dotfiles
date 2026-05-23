@@ -3,7 +3,7 @@ $memory_usage\
 $cmd_duration\
 $username\
 $hostname\
-$kubernetes\
+$mise\
 $directory\
 $git_branch\
 $git_state\
@@ -14,8 +14,6 @@ $python\
 $terraform\
 $ruby\
 $rust\
-$battery\
-$nix_shell\
 $line_break\
 $env_var\
 $jobs\
@@ -24,18 +22,16 @@ $character\
 
 scan_timeout = 50
 command_timeout = 300
-
-# Don't print a new line at start of prompt
 add_newline = true
 
 [line_break]
 disabled = false
 
 [memory_usage]
-disabled = false
-threshold = 75
-format = "[High Memory Used! RAM: [${ram}](green) / Swap: [${swap}](green)](bold green)\n"
-style = "bold green"
+disabled = true
+# threshold = 95
+# format = "[High Memory Used! RAM: [${ram}](green) / Swap: [${swap}](green)](bold green)\n"
+# style = "bold green"
 
 [username]
 show_always = true
@@ -82,9 +78,9 @@ truncation_length = 30
 only_attached = true
 
 [cmd_duration]
-min_time = 5
-format = "[Command Duration: ](bold yellow)[$duration](yellow)\n"
+min_time = 10_000
+format = "[Time: ](bold yellow)[$duration](yellow)\n"
 
 [python]
-format = 'via [py$version]($style)'
+format = 'via [🐍 $version]($style)'
 version_format = "${major}.${minor}"

@@ -1,34 +1,47 @@
-export PATH=/opt/homebrew/bin:/usr/local/bin:~/.local/bin:~/.cargo/bin:$PATH
+{{- if eq .chezmoi.os "darwin" }}
+export PATH=/opt/homebrew/bin:/usr/local/bin:$HOME/.local/bin:$HOME/.cargo/bin:$PATH
+{{- else }}
+export PATH=$HOME/.local/bin:$HOME/.cargo/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:$PATH
+{{- end }}
 
 # load starship
-eval "$(starship init zsh)"
-
-# initialize zinit
-source ~/.zinit/zinit.zsh
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# compinit
-autoload -Uz compinit
-compinit
-zinit cdreplay
-
-# load external shell plugins
-zinit self-update
-zinit light simnalamburt/cgitc
-zinit light simnalamburt/zsh-expand-all
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zdharma-continuum/history-search-multi-word
-zinit light zsh-users/zsh-history-substring-search
-
-if is-at-least 5.3; then
-  zinit ice silent wait'1' atload'_zsh_autosuggest_start'
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
 fi
 
-eval "$(zoxide init zsh)"
-eval $(thefuck --alias)
+# initialize zinit
+if [ -r "$HOME/.zinit/zinit.zsh" ]; then
+  source "$HOME/.zinit/zinit.zsh"
+  autoload -Uz _zinit
+  (( ${+_comps} )) && _comps[zinit]=_zinit
+
+  # compinit
+  autoload -Uz compinit is-at-least
+  compinit
+  zinit cdreplay
+
+  # load external shell plugins
+  zinit self-update
+  zinit light simnalamburt/cgitc
+  zinit light simnalamburt/zsh-expand-all
+  zinit light zsh-users/zsh-completions
+  zinit light zsh-users/zsh-autosuggestions
+  zinit light zdharma-continuum/fast-syntax-highlighting
+  zinit light zdharma-continuum/history-search-multi-word
+  zinit light zsh-users/zsh-history-substring-search
+
+  if is-at-least 5.3; then
+    zinit ice silent wait'1' atload'_zsh_autosuggest_start'
+  fi
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+if command -v thefuck >/dev/null 2>&1; then
+  eval "$(thefuck --alias)"
+fi
 
 # TODO: mise 깔았으니... 빨리 nvm은 지우는걸로
 export NVM_DIR=~/.nvm
@@ -62,15 +75,24 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
+
+{{- if eq .chezmoi.os "darwin" }}
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # pnpm
-export PNPM_HOME="/Users/Nebuleto/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+{{- else }}
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+{{- end }}
 
 if [[ -z "$ZELLIJ" ]] && [[ $TERM_PROGRAM == "ghostty" ]]; then
     if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
@@ -84,11 +106,17 @@ if [[ -z "$ZELLIJ" ]] && [[ $TERM_PROGRAM == "ghostty" ]]; then
     fi
 fi
 
-export ANDROID_HOME="/Users/Nebuleto/Library/Android/sdk"
+{{- if eq .chezmoi.os "darwin" }}
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+{{- else }}
+export ANDROID_HOME="$HOME/Android/Sdk"
+{{- end }}
 alias cc='CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1 CLAUDE_CONFIG_DIR=~/claude/work claude'
 alias claude='CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1 CLAUDE_CONFIG_DIR=~/claude/work claude'
 
-. "$HOME/.grit/bin/env"
+if [ -r "$HOME/.grit/bin/env" ]; then
+  . "$HOME/.grit/bin/env"
+fi
 
 zellij_tab_name_update() {
     if [[ -n $ZELLIJ ]]; then

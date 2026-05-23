@@ -1,0 +1,9 @@
+.git/
+.gitmodules
+.gitignore
+Brewfile
+LICENSE.txt
+README.md
+bootstrap.sh
+images/**
+lib/**

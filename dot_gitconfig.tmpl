@@ -49,8 +49,10 @@
 [gpg]
   format = ssh
 [gpg "ssh"]
+{{- if eq .chezmoi.os "darwin" }}
   program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-  allowedSignersFile = /Users/Realignist/.ssh/allowed_signers
+{{- end }}
+  allowedSignersFile = {{ .chezmoi.homeDir }}/.ssh/allowed_signers
 
 [push]
   autoSetupRemote = true

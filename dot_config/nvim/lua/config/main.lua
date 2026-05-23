@@ -2,6 +2,7 @@ local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
 local keyset = vim.keymap.set
+local data_path = vim.fn.stdpath("data")
 
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
@@ -46,6 +47,88 @@ opt.foldenable = false
 opt.list = true
 
 require("ibl").setup()
+
+local ok_navic, navic = pcall(require, "nvim-navic")
+local ok_mason, mason = pcall(require, "mason")
+local ok_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
+
+local function navic_location()
+  if ok_navic and navic.is_available() then
+    return navic.get_location()
+  end
+
+  return ""
+end
+
+if ok_navic then
+  navic.setup({
+    highlight = true,
+    separator = " > ",
+    lsp = {
+      auto_attach = false,
+    },
+  })
+end
+
+local typescript_server = nil
+local lsp_definitions_path = data_path .. "/lazy/nvim-lspconfig/lsp"
+
+if vim.uv.fs_stat(lsp_definitions_path .. "/vtsls.lua") then
+  typescript_server = "vtsls"
+elseif vim.uv.fs_stat(lsp_definitions_path .. "/ts_ls.lua") then
+  typescript_server = "ts_ls"
+end
+
+if ok_mason then
+  mason.setup()
+end
+
+if ok_mason_lspconfig then
+  local ensure_installed = {}
+
+  if typescript_server then
+    table.insert(ensure_installed, typescript_server)
+  end
+
+  mason_lspconfig.setup({
+    ensure_installed = ensure_installed,
+    automatic_installation = true,
+  })
+end
+
+if typescript_server then
+  local navic_filetypes = {
+    javascript = true,
+    javascriptreact = true,
+    typescript = true,
+    typescriptreact = true,
+  }
+
+  local function on_typescript_attach(client, bufnr)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+
+    if ok_navic
+      and client.server_capabilities.documentSymbolProvider
+      and navic_filetypes[vim.bo[bufnr].filetype]
+    then
+      navic.attach(client, bufnr)
+    end
+  end
+
+  local typescript_config = {
+    filetypes = vim.tbl_keys(navic_filetypes),
+    handlers = {
+      ["textDocument/publishDiagnostics"] = function() end,
+    },
+    on_attach = on_typescript_attach,
+  }
+
+  if vim.lsp and vim.lsp.config and vim.lsp.enable then
+    vim.lsp.config(typescript_server, typescript_config)
+    vim.lsp.enable(typescript_server)
+  end
+end
 
 -- Plugins Initialization
 require('hlslens').setup()
@@ -250,17 +333,14 @@ require('bufferline').setup({
       style = "underline",
     },
   },
-  highlights = require("catppuccin.special.bufferline").get_theme(),
+  --highlights = require("onenord.theme"),
 })
-
-local gps = require("nvim-gps")
-gps.setup()
 
 -- Initialize Lualine
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'catppuccin-macchiato',
+    -- theme = 'onenord',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {
@@ -293,7 +373,7 @@ require('lualine').setup {
     lualine_z = {}
   },
   winbar = { 
-    lualine_a = { { gps.get_location, cond = gps.is_available } },
+    lualine_a = { { navic_location, cond = function() return ok_navic and navic.is_available() end } },
     lualine_b = { "g:coc_status" },
     lualine_x = { "location", "filename", "diagnostics" },
   },
@@ -412,3 +492,13 @@ vim.keymap.set("n", "<C-[>", sj.prev_match)
 vim.keymap.set("n", "<C-]>", sj.next_match)
 vim.keymap.set("n", "<C-z>", sj.redo)
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = '*.kdl',
+  callback = function(event)
+    vim.opt.tabstop = 4
+    vim.opt.shiftwidth = 4
+    vim.opt.expandtab = true
+    vim.opt.autoindent = true
+  end,
+  desc = 'Auto mkdir to save file'
+})

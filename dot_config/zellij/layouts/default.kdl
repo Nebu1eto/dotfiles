@@ -1,0 +1,58 @@
+layout {
+    default_tab_template {
+        pane size=2 borderless=true {
+            plugin location="https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm" {
+                format_left   "{mode} #[fg=#eceff4,bold]{session}"
+                format_center "{tabs}"
+                format_right  "{command_git_branch} {datetime}"
+                format_space  " "
+                format_hide_on_overlength "true"
+                format_precedence "crl"
+
+                border_enabled  "true"
+                border_char     "─"
+                border_format   "#[fg=#4c566a]{char}"
+                border_position "bottom"
+
+                hide_frame_for_single_pane "false"
+
+                mode_normal         "#[bg=#2e3440,fg=#5e81ac,bold]  NORMAL "
+                mode_locked         "#[bg=#5e81ac,fg=#2e3440,bold] LOCKED "
+                mode_resize         "#[bg=#b48ead,fg=#2e3440,bold]⇋ RESIZE "
+                mode_pane           "#[bg=#ECEFF4,fg=#2E3440,bold]⌖  PANE  "
+                mode_tab            "#[bg=#ECEFF4,fg=#2E3440,bold]↹ TAB   "
+                mode_enter_search   "#[bg=#d08770,fg=#2E3440,bold]🔍 SEARCH"
+                mode_search         "#[bg=#d08770,fg=#2E3440,bold]🔍 SEARCH"
+                mode_rename_tab     "#[bg=#bf616a,fg=#d8dee9,bold]  RENAME "
+                mode_rename_pane    "#[bg=#d8dee9,fg=#bf616a,bold]  RENAME "
+                mode_move           "#[bg=#2e3440,fg=#b48ead,bold]⇋ MOVE   "
+                // mode_scroll        "#[bg=#${colors.base0A},fg=#2E3440,bold] SCROLL#[bg=#5E81AC,fg=#${colors.base0A}]█"
+                // mode_session       "#[bg=#${colors.base0E},fg=#2E3440,bold] SESSION#[bg=#5E81AC,fg=#${colors.base0E}]█"
+                // mode_prompt        "#[bg=#ECEFF4,fg=#2E3440,bold] PROMPT#[bg=#5E81AC,fg=#2E3440]█"
+
+                tab_normal   "#[fg=#4c566a] {index} {name} "
+                tab_active   "#[fg=#d8dee9,bold,italic] {index} {name} "
+
+                // indicators
+                tab_sync_indicator       " "
+                tab_fullscreen_indicator " 󰊓"
+                tab_floating_indicator   " 󰹙"
+
+                command_git_branch_command     "git rev-parse --abbrev-ref HEAD"
+                command_git_branch_format      "#[fg=#5e81ac,bold] {stdout}"
+                command_git_branch_interval    "10"
+                command_git_branch_rendermode  "static"
+
+                datetime        "#[fg=#2e3440,bg=#d8dee9,bold] {format}"
+                datetime_format "%Y-%m-%d %H:%M"
+                datetime_timezone "Asia/Seoul"
+            }
+        }
+
+        children
+
+        // pane size=1 borderless=true {
+        //     plugin location="zellij:status-bar";
+        // }
+    }
+}

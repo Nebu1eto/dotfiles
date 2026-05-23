@@ -12,7 +12,10 @@ return {
   { "lewis6991/gitsigns.nvim" },
   { "kevinhwang91/nvim-hlslens" },
   { "neoclide/coc.nvim", branch = "release" },
-  { "SmiteshP/nvim-gps" },
+  { "SmiteshP/nvim-navic" },
+  { "neovim/nvim-lspconfig" },
+  { "williamboman/mason.nvim" },
+  { "williamboman/mason-lspconfig.nvim" },
 
   -- FZF
   {
@@ -26,6 +29,6 @@ return {
   { "nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate" },
   { "woosaaahh/sj.nvim" },
 
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { "rmehri01/onenord.nvim", name = "onenord" },
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
-

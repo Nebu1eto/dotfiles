@@ -1,11 +1,15 @@
+{{- if eq .chezmoi.os "darwin" }}
 # Added by OrbStack: 'orb' SSH host for Linux machines
 # This only works if it's at the top of ssh_config (before any Host blocks).
 # This won't be added again if you remove it.
 Include ~/.orbstack/ssh/config
+{{- end }}
 
 Host *
   SetEnv TERM=xterm-256color
+{{- if eq .chezmoi.os "darwin" }}
   IdentityAgent "~/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+{{- end }}
 
 # Personal GitHub
 Host nebuleto.github.com
@@ -14,4 +18,6 @@ Host nebuleto.github.com
   IdentityFile ~/.ssh/nebuleto.pub
   IdentitiesOnly yes
 
-
+Host cartanova-vm
+  HostName cartanova-vm
+  User nebuleto
