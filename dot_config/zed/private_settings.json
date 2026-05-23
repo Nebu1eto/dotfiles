@@ -1,0 +1,156 @@
+{
+  "cli_default_open_behavior": "existing_window",
+  "collaboration_panel": {
+    "dock": "right"
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    },
+    "codex-acp": {
+      "type": "registry"
+    }
+  },
+  "edit_predictions": {
+    "provider": "mercury"
+  },
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    },
+  },
+  "toolbar": {
+    "code_actions": true,
+    "breadcrumbs": true,
+    "agent_review": false,
+    "selections_menu": false,
+  },
+  "minimap": {
+    "current_line_highlight": "gutter",
+    "thumb_border": "left_only",
+    "thumb": "always",
+    "show": "auto",
+    "max_width_columns": 80
+  },
+  "show_wrap_guides": true,
+  "lsp_document_colors": "inlay",
+  "buffer_line_height": {
+    "custom": 1.7
+  },
+  "icon_theme": {
+    // "mode": "light",
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Frappé"
+  },
+  "inlay_hints": {
+    "edit_debounce_ms": 600,
+    "scroll_debounce_ms": 100,
+    "show_value_hints": true,
+    "show_background": false,
+    "enabled": true,
+    "show_type_hints": true,
+    "show_parameter_hints": true,
+    "show_other_hints": true
+  },
+  "file_scan_exclusions":[
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/.jj",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.setting",
+  ],
+  "ui_font_weight": 400,
+  "buffer_font_weight": 400,
+  "active_pane_modifiers": {
+    "border_size": 1.75,
+    "inactive_opacity": 0.85
+  },
+  "outline_panel": {
+    "dock": "right"
+  },
+  "agent": {
+    "single_file_review": true,
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "project_panel": {
+    "dock": "right"
+  },
+  "terminal": {
+    "font_weight": 400,
+    "font_size": 15.0,
+    // "font_size": 14,
+    "dock": "left",
+    "line_height": {
+      "custom": 1.5
+    }
+  },
+  "telemetry": {
+    "metrics": false,
+    "diagnostics": false
+  },
+  "base_keymap": "VSCode",
+  "agent_buffer_font_size": 14,
+  "agent_ui_font_size": 14,
+  "buffer_font_size": 13.5,
+  "ui_font_size": 15.0,
+  "theme": {
+    "mode": "dark",
+    // "mode": "light",
+    "light": "Catppuccin Latte",
+    "dark": "Nord Dark"
+  },
+  "auto_update": true,
+  "buffer_font_fallbacks": ["IBM Plex Sans KR", "IBM Plex Sans JP"],
+  "buffer_font_family": "BlexMono Nerd Font",
+  "cursor_shape": "underline",
+  "format_on_save": "off",
+  "show_completions_on_input": true,
+  "ui_font_family": "HazePlex",
+  "vim_mode": true,
+  "languages": {
+    "Swift": {
+      "enable_language_server": true,
+      "format_on_save": "off",
+      "formatter": "language_server",
+      "language_servers": ["sourcekit-lsp"]
+    },
+    // "TypeScript": {
+    //   "enable_language_server": true,
+    //   "language_servers": ["vtsls", "! biome"]
+    // },
+    // "JavaScript": {
+    //   "enable_language_server": true,
+    //   "language_servers": ["vtsls", "! biome"]
+    // }
+  },
+  "lsp": {
+    "sourcekit-lsp": {
+      "binary": {
+        "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/sourcekit-lsp"
+      }
+    },
+    "vtsls": {
+      "initialization_options": {
+        "vtsls": {
+          "autoUseWorkspaceTsdk": true
+        }
+      },
+      "settings": {
+        "vtsls": {
+          "experimental": {
+            "maxInlayHintLength": 20
+          }
+        }
+      }
+    },
+    "biome": { "initialization_options": { "disabled": true } }
+  }
+}

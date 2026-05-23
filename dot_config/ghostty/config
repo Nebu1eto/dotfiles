@@ -1,0 +1,77 @@
+theme = OneNord
+font-family = BlexMono Nerd Font
+font-family = IBM Plex Sans KR
+font-family = IBM Plex Sans JP
+alpha-blending = native
+adjust-cell-height = 0%
+adjust-cell-width = -2%
+background-blur = 50
+background-opacity = 0.85
+cursor-style = underline
+window-width = 90
+window-height = 35
+window-subtitle = working-directory
+macos-titlebar-style = transparent
+font-size = 14
+adjust-cell-width = 1
+adjust-cell-height = 4
+unfocused-split-opacity = 0.95
+
+selection-clear-on-typing = true
+keybind = shift+enter=text:\x1b\r
+keybind = super+r=reload_config
+
+window-padding-x = 5
+window-padding-y = 4
+window-padding-color = extend
+window-padding-balance = true
+resize-overlay = never
+macos-option-as-alt = true
+macos-titlebar-proxy-icon = visible
+
+split-divider-color = #666
+unfocused-split-fill = #000
+unfocused-split-opacity = 0.75
+
+bell-features = system,audio,attention,title,border
+window-save-state = always
+shell-integration-features = ssh-terminfo,ssh-env
+
+keybind = cmd+t=unbind
+keybind = cmd+n=unbind
+keybind = cmd+c=unbind
+keybind = cmd+w=unbind
+keybind = cmd+opt+left=unbind
+keybind = cmd+opt+right=unbind
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
+keybind = cmd+k=unbind
+keybind = cmd+f=unbind
+
+keybind = cmd+[=unbind
+keybind = cmd+]=unbind
+
+keybind = cmd+1=unbind
+keybind = cmd+2=unbind
+keybind = cmd+3=unbind
+keybind = cmd+4=unbind
+keybind = cmd+5=unbind
+keybind = cmd+6=unbind
+keybind = cmd+7=unbind
+keybind = cmd+8=unbind
+keybind = cmd+9=unbind
+keybind = cmd+0=unbind
+
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+keybind = cmd+digit_9=unbind
+keybind = cmd+digit_0=unbind
+
+keybind = cmd+shift+p=unbind
+

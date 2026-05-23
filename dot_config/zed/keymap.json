@@ -1,0 +1,27 @@
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle",
+      "cmd-p": "command_palette::Toggle",
+      "cmd-shift-p": "project_symbols::Toggle",
+      "cmd-alt-p": ["projects::OpenRecent", { "create_new_window": true }],
+      // "cmd-alt-p": "file_finder::Toggle",
+      "cmd cmd": "terminal_panel::ToggleFocus",
+      "cmd-k h": "workspace::ActivatePaneLeft",
+      "cmd-k j": "workspace::ActivatePaneDown",
+      "cmd-k k": "workspace::ActivatePaneUp",
+      "cmd-k l": "workspace::ActivatePaneRight",
+      "cmd-k H": "workspace::SwapPaneLeft",
+      "cmd-k J": "workspace::SwapPaneDown",
+      "cmd-k K": "workspace::SwapPaneUp",
+      "cmd-k L": "workspace::SwapPaneRight",
+    },
+  },
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      // "j k": "vim::NormalBefore"
+    },
+  },
+]
