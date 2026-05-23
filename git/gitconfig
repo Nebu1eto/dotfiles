@@ -5,7 +5,7 @@
     editor = nvim
   quotepath = false
 [alias]
-    history = log --graph --pretty=format:'%C(yellow)%h%Creset \
+    graph = log --graph --pretty=format:'%C(yellow)%h%Creset \
         -%C(yellow)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' \
         --abbrev-commit --date=short --date-order -n100
     c = clone

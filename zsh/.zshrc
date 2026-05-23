@@ -34,6 +34,7 @@ eval $(thefuck --alias)
 export NVM_DIR=~/.nvm
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
+bindkey -e
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
@@ -46,13 +47,14 @@ setopt EXTENDED_HISTORY
 setopt INC_APPEND_HISTORY
 
 # define some aliases.
+export EDITOR="nvim"
 alias g='git'
 alias vi="nvim"
 alias vim="nvim"
 alias ls="lsd -lFNg --group-dirs=first"
-alias cat="bat --number"
-alias catp="bat --paging never"
-alias catpp="bat --plain --paging never"
+alias bat="bat --number"
+alias batp="bat --paging never"
+alias batpp="bat --plain --paging never"
 
 # sensible aliases
 alias ..='cd ..'
@@ -62,3 +64,43 @@ alias .....='cd ../../../..'
 alias ......='cd ../../../../..'
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
+# pnpm
+export PNPM_HOME="/Users/Nebuleto/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+if [[ -z "$ZELLIJ" ]] && [[ $TERM_PROGRAM == "ghostty" ]]; then
+    if [[ "$ZELLIJ_AUTO_ATTACH" == "true" ]]; then
+        zellij attach -c
+    else
+        zellij -l default
+    fi
+
+    if [[ "$ZELLIJ_AUTO_EXIT" == "true" ]]; then
+        exit
+    fi
+fi
+
+export ANDROID_HOME="/Users/Nebuleto/Library/Android/sdk"
+alias cc='CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1 CLAUDE_CONFIG_DIR=~/claude/work claude'
+alias claude='CLAUDE_CODE_NO_FLICKER=1 CLAUDE_CODE_DISABLE_ADAPTIVE_THINKING=1 CLAUDE_CONFIG_DIR=~/claude/work claude'
+
+. "$HOME/.grit/bin/env"
+
+zellij_tab_name_update() {
+    if [[ -n $ZELLIJ ]]; then
+        local current_dir=$PWD
+        if [[ $current_dir == $HOME ]]; then
+            current_dir="~"
+        else
+            current_dir=${current_dir##*/}
+        fi
+        command nohup zellij action rename-pane $current_dir >/dev/null 2>&1
+    fi
+}
+
+zellij_tab_name_update
+chpwd_functions+=(zellij_tab_name_update)
