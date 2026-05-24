@@ -38,3 +38,17 @@ install_chezmoi
 
 chezmoi --source "$DOTFILES_DIR" init
 chezmoi apply
+
+cat <<'EOF'
+
+Bootstrap complete.
+
+Zellij note:
+  The zjstatus plugin is installed as a local wasm file, but Zellij still
+  requires a one-time permission grant per machine/cache.
+
+  On first Zellij launch, focus or click the zjstatus bar and press "y".
+  If the bar is blank, run:
+    zellij action focus-pane-id plugin_1
+  Then press "y" to approve the plugin permissions.
+EOF

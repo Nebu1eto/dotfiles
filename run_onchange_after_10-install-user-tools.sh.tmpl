@@ -28,6 +28,19 @@ if ! command -v poetry >/dev/null 2>&1; then
   fi
 fi
 
+zjstatus_version="v0.23.0"
+zjstatus_dir="$HOME/.config/zellij/plugins"
+zjstatus_wasm="$zjstatus_dir/zjstatus.wasm"
+zjstatus_url="https://github.com/dj95/zjstatus/releases/download/$zjstatus_version/zjstatus.wasm"
+
+mkdir -p "$zjstatus_dir"
+if [ ! -s "$zjstatus_wasm" ]; then
+  tmp_wasm="$(mktemp)"
+  curl -fsSL "$zjstatus_url" -o "$tmp_wasm"
+  install -m 0644 "$tmp_wasm" "$zjstatus_wasm"
+  rm -f "$tmp_wasm"
+fi
+
 {{- if eq .chezmoi.os "linux" }}
 if ! command -v starship >/dev/null 2>&1; then
   curl -fsSL https://starship.rs/install.sh | sh -s -- --yes
