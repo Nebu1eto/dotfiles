@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+{{- if eq .chezmoi.os "darwin" }}
+if [ -x /opt/homebrew/bin/brew ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x /usr/local/bin/brew ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
+{{- end }}
+
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
 if ! command -v rustup >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 fi
@@ -10,7 +20,12 @@ if [ ! -d "$HOME/.nvm" ]; then
 fi
 
 if ! command -v poetry >/dev/null 2>&1; then
-  curl -sSL https://install.python-poetry.org | python3 -
+  if command -v uv >/dev/null 2>&1; then
+    uv tool install poetry
+  else
+    poetry_python="$(command -v python3.11 || command -v python3)"
+    curl -sSL https://install.python-poetry.org | "$poetry_python" -
+  fi
 fi
 
 {{- if eq .chezmoi.os "linux" }}
